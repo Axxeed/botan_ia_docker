@@ -1,21 +1,11 @@
-# python base image in the container from Docker Hub
-FROM python:3.8.12-buster
+FROM python:3.9
 
-# copy files to the /app folder in the container
-COPY fast.py /app/fast.py
-COPY Pipfile /app/Pipfile
-COPY Pipfile.lock /app/Pipfile.lock
-COPY model.py /app/model.py
-COPY iris_model.joblib /app/iris_model.joblib
+WORKDIR /code
 
+COPY ./requirements.txt /code/requirements.txt
 
-# set the working directory in the container to be /app
-WORKDIR /app
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
+COPY ./app /code/app
 
-# install the packages from the Pipfile in the container
-RUN pip install pipenv
-RUN pipenv install --system --deploy --ignore-pipfile
-
-# execute the command python main.py (in the WORKDIR) to start the app
-CMD uvicorn fast:app --host 0.0.0.0 --port $PORT
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]

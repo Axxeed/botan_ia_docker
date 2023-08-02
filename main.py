@@ -1,7 +1,7 @@
 # 1. Library imports marche stp
 import uvicorn
 from fastapi import FastAPI
-from model import IrisModel, IrisSpecies
+from app.model import IrisModel, IrisSpecies
 
 # 2. Create the app object
 app = FastAPI()
