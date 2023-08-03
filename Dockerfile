@@ -6,6 +6,7 @@ COPY fast.py /app/fast.py
 COPY Pipfile /app/Pipfile
 COPY Pipfile.lock /app/Pipfile.lock
 COPY model.py /app/model.py
+COPY iris2.csv /app/iris2.csv
 COPY iris_model.joblib /app/iris_model.joblib
 
 
