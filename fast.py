@@ -7,7 +7,7 @@ from model import IrisModel, IrisSpecies
 app = FastAPI()
 model = IrisModel()
 
-@app.get('/')
+@app.post('/')
 def home():
     return {'message':'Welcome, from github 2'}
 
